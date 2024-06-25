@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Simoneto\Dify;
 
+use Simoneto\Dify\Apps\Chat;
+use Simoneto\Dify\Apps\Completion;
+
 /**
  * @method static Factory setOption(string $key, $value)
  * @method static Factory setOptions(array $options)
@@ -11,6 +14,8 @@ namespace Simoneto\Dify;
  * @method static Factory setBaseUri(string $baseUri)
  * @method static Factory setMiddleware(callable $middleware)
  * @method static Client client(string $apiKey)
+ * @method static Chat chat(string $apiKey)
+ * @method static Completion completion(string $apiKey)
  */
 class Dify
 {

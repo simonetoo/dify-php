@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Simoneto\Dify\Apps;
 
-use Simoneto\Dify\Responses\ChatStreamChunked;
 use Simoneto\Dify\Responses\Response;
 use Simoneto\Dify\Responses\StreamResponse;
 

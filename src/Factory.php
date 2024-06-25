@@ -5,6 +5,8 @@ namespace Simoneto\Dify;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
+use Simoneto\Dify\Apps\Chat;
+use Simoneto\Dify\Apps\Completion;
 
 class Factory
 {
@@ -142,5 +144,27 @@ class Factory
         $options = array_merge($this->options, $headers);
 
         return new Client(new GuzzleClient($options));
+    }
+
+    /**
+     * Create a chat app.
+     *
+     * @param string $apiKey
+     * @return Chat
+     */
+    public function chat(string $apiKey): Chat
+    {
+        return new Chat($apiKey);
+    }
+
+    /**
+     * Create a completion app.
+     *
+     * @param string $apiKey
+     * @return Completion
+     */
+    public function completion(string $apiKey): Completion
+    {
+        return new Completion($apiKey);
     }
 }

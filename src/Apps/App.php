@@ -55,7 +55,7 @@ abstract class App
     }
 
     /**
-     * End-users can provide feedback messages, facilitating application developers to optimize expected outputs.
+     * Provide feedback for a message.
      *
      * @param string $userId
      * @param string $messageId
