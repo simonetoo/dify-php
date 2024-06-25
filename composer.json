@@ -1,0 +1,36 @@
+{
+  "name": "simoneto/dify",
+  "description": "This is the PHP SDK for the Dify API.",
+  "keywords": [
+    "php",
+    "dify",
+    "sdk"
+  ],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Simoneto\\Dify\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Simon"
+    }
+  ],
+  "require": {
+    "php": "^7.2|^8.0",
+    "guzzlehttp/guzzle": "^7.8",
+    "ext-json": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true,
+    "preferred-install": "dist"
+  }
+}
