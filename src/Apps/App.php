@@ -12,13 +12,6 @@ abstract class App
 {
 
     /**
-     * The api key of dify app.
-     *
-     * @var string
-     */
-    protected $apiKey;
-
-    /**
      * The http client.
      * @var Client
      */
@@ -27,21 +20,11 @@ abstract class App
     /**
      * Create a new dify app instance.
      *
-     * @param string $apiKey
+     * @param Client $client
      */
-    public function __construct(string $apiKey)
+    public function __construct(Client $client)
     {
-        $this->apiKey = $apiKey;
-        $this->client = Dify::client($apiKey);
-    }
-
-    /**
-     * Get the api key.
-     * @return string
-     */
-    public function getApiKey(): string
-    {
-        return $this->apiKey;
+        $this->client = $client;
     }
 
     /**

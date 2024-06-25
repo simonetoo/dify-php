@@ -20,6 +20,12 @@ $apiKey = 'your-api-key-here';
 
 Dify::setBaseUri('https://dify.xx.com');
 
+// Create a http client.
+$client = Dify::create();
+
+// Create a http client with api key.
+$client = Dify::createWithApiKey($apiKey);
+
 // Create a chat app.
 $chat = Dify::chat($apiKey);
 

@@ -105,6 +105,16 @@ class Factory
     }
 
     /**
+     * @param string $key
+     * @return $this
+     */
+    public function removeHeader(string $key): Factory
+    {
+        unset($this->options['headers'][$key]);
+        return $this;
+    }
+
+    /**
      * Set the dify base uri.
      *
      * @param string $baseUri
@@ -128,22 +138,33 @@ class Factory
     }
 
     /**
-     * Create a new client with api key.
+     * Create a new client.
      *
-     * @param string $apiKey
      * @return Client
      */
-    public function client(string $apiKey): Client
+    public function create(): Client
     {
         $handler = $this->options['handler'] ?? HandlerStack::create();
         foreach ($this->middlewares as $middleware) {
             $handler->push($middleware);
         }
-        $headers = $this->options['headers'];
-        $headers['Authorization'] = 'Bearer ' . $apiKey;
-        $options = array_merge($this->options, $headers);
+        return new Client(new GuzzleClient($this->options));
+    }
 
-        return new Client(new GuzzleClient($options));
+    /**
+     * Create a new client with api key.
+     * @param string $apiKey
+     * @return Client
+     */
+    public function createWithApiKey(string $apiKey): Client
+    {
+        $authorization = $this->options['headers']['Authorization'];
+        $this->options['headers']['Authorization'] = 'Bearer ' . $apiKey;
+        $client = $this->create();
+        if (!empty($authorization)) {
+            $this->options['headers']['Authorization'] = $authorization;
+        }
+        return $client;
     }
 
     /**
@@ -154,7 +175,7 @@ class Factory
      */
     public function chat(string $apiKey): Chat
     {
-        return new Chat($apiKey);
+        return new Chat($this->createWithApiKey($apiKey));
     }
 
     /**
@@ -165,6 +186,6 @@ class Factory
      */
     public function completion(string $apiKey): Completion
     {
-        return new Completion($apiKey);
+        return new Completion($this->createWithApiKey($apiKey));
     }
 }

@@ -13,7 +13,8 @@ use Simoneto\Dify\Apps\Completion;
  * @method static Factory setHeader(string $key, string $value)
  * @method static Factory setBaseUri(string $baseUri)
  * @method static Factory setMiddleware(callable $middleware)
- * @method static Client client(string $apiKey)
+ * @method static Client create()
+ * @method static Client createWithApiKey(string $apiKey)
  * @method static Chat chat(string $apiKey)
  * @method static Completion completion(string $apiKey)
  */
