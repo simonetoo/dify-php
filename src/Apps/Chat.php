@@ -49,6 +49,7 @@ class Chat extends App
         return $this->client->postJson('chat-messages', array_merge($parameters, [
             'user' => $userId,
             'query' => $query,
+            'inputs' => [],
             'response_mode' => 'blocking',
         ]));
     }
@@ -66,6 +67,7 @@ class Chat extends App
         $response = $this->client->postJson('chat-messages', array_merge($parameters, [
             'user' => $userId,
             'query' => $query,
+            'inputs' => [],
             'response_mode' => 'streaming',
         ]))->throwIfHttpFailed();
         return new StreamResponse($response);
