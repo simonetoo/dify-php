@@ -36,6 +36,16 @@ class Response implements ResponseInterface
     }
 
     /**
+     * Get the PSR Response instance.
+     *
+     * @return ResponseInterface
+     */
+    public function getPsrResponse(): ResponseInterface
+    {
+        return $this->response;
+    }
+
+    /**
      * Get the body of the response.
      *
      * @return string
