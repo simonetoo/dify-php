@@ -13,12 +13,14 @@ class Completion extends App
      * Send a request to the chat application.
      *
      * @param string $userId
+     * @param string $query
      * @param array $parameters
      * @return Response
      */
-    public function send(string $userId, array $parameters = []): Response
+    public function send(string $userId, string $query, array $parameters = []): Response
     {
-        return $this->client->postJson('/completion-messages', array_merge($parameters, [
+        $parameters['inputs']['query'] = $query;
+        return $this->client->postJson('completion-messages', array_merge($parameters, [
             'user' => $userId,
             'response_mode' => 'blocking',
         ]));
@@ -28,12 +30,14 @@ class Completion extends App
      * Send a request to the chat application with enable streaming mode.
      *
      * @param string $userId
+     * @param string $query
      * @param array $parameters
      * @return StreamResponse
      */
-    public function stream(string $userId, array $parameters): StreamResponse
+    public function stream(string $userId, string $query, array $parameters): StreamResponse
     {
-        $response = $this->client->postJson('/completion-messages', array_merge($parameters, [
+        $parameters['inputs']['query'] = $query;
+        $response = $this->client->postJson('completion-messages', array_merge($parameters, [
             'user' => $userId,
             'response_mode' => 'streaming',
         ]))->throwIfHttpFailed();
@@ -50,7 +54,7 @@ class Completion extends App
      */
     public function stop(string $userId, string $taskId): Response
     {
-        return $this->client->postJson("/completion-messages/{$taskId}/stop", [
+        return $this->client->postJson("completion-messages/{$taskId}/stop", [
             'user' => $userId
         ]);
     }

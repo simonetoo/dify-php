@@ -158,7 +158,7 @@ class Factory
      */
     public function createWithApiKey(string $apiKey): Client
     {
-        $authorization = $this->options['headers']['Authorization'];
+        $authorization = $this->options['headers']['Authorization'] ?? [];
         $this->options['headers']['Authorization'] = 'Bearer ' . $apiKey;
         $client = $this->create();
         if (!empty($authorization)) {

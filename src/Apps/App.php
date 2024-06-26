@@ -6,7 +6,6 @@ namespace Simoneto\Dify\Apps;
 use Simoneto\Dify\Client;
 use Simoneto\Dify\Responses\Response;
 use Simoneto\Dify\Responses\StreamResponse;
-use Simoneto\Dify\Dify;
 
 abstract class App
 {
@@ -34,7 +33,7 @@ abstract class App
      */
     public function parameters(): Response
     {
-        return $this->client->get('/parameters');
+        return $this->client->get('parameters');
     }
 
     /**
@@ -47,7 +46,7 @@ abstract class App
      */
     public function messageFeedback(string $userId, string $messageId, string $rating = null): Response
     {
-        return $this->client->postJson("/messages/{$messageId}/feedbacks", [
+        return $this->client->postJson("messages/{$messageId}/feedbacks", [
             'user' => $userId,
             'rating' => $rating
         ]);
@@ -86,7 +85,7 @@ abstract class App
                 'filename' => empty($file['name']) ? pathinfo($file['path'], PATHINFO_FILENAME) : $file['name']
             ];
         }
-        return $this->client->request('POST', '/files/upload', [
+        return $this->client->request('POST', 'files/upload', [
             'headers' => [
                 'Content-Type' => 'multipart/form-data',
             ],
@@ -103,7 +102,7 @@ abstract class App
      */
     public function textToAudio(string $userId, string $text): Response
     {
-        return $this->client->postJson('/text-to-audio', [
+        return $this->client->postJson('text-to-audio', [
             'text' => $text,
             'user' => $userId,
             'streaming' => false
@@ -119,7 +118,7 @@ abstract class App
      */
     public function textToAudioStream(string $userId, string $text): StreamResponse
     {
-        $response = $this->client->postJson('/text-to-audio', [
+        $response = $this->client->postJson('text-to-audio', [
             'text' => $text,
             'user' => $userId,
             'streaming' => true
