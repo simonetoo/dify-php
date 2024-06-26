@@ -32,7 +32,6 @@ class Response implements ResponseInterface
      */
     public function __construct(ResponseInterface $baseResponse)
     {
-        $baseResponse->getBody()->rewind();;
         $this->response = $baseResponse;
     }
 
