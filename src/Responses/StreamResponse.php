@@ -37,10 +37,7 @@ class StreamResponse implements IteratorAggregate
                 continue;
             }
 
-            $data = trim(substr($line, strlen('data:')));
-            $result = json_decode($data, true, JSON_THROW_ON_ERROR);
-
-            yield new StreamChunked($result);
+            yield $line;
         }
     }
 
