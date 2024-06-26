@@ -40,7 +40,7 @@ class Completion extends App
         $response = $this->client->postJson('completion-messages', array_merge($parameters, [
             'user' => $userId,
             'response_mode' => 'streaming',
-        ]))->throwIfHttpFailed();
+        ]), ['stream' => true])->throwIfHttpFailed();
         return new StreamResponse($response);
     }
 

@@ -69,7 +69,7 @@ class Chat extends App
             'query' => $query,
             'inputs' => [],
             'response_mode' => 'streaming',
-        ]))->throwIfHttpFailed();
+        ]), ['stream' => true])->throwIfHttpFailed();
         return new StreamResponse($response);
     }
 

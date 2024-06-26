@@ -4,10 +4,11 @@ declare(strict_types=1);
 namespace Simoneto\Dify\Responses;
 
 use Generator;
+use IteratorAggregate;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
-class StreamResponse implements \IteratorAggregate
+class StreamResponse implements IteratorAggregate
 {
     /**
      * The PSR response.
@@ -15,13 +16,6 @@ class StreamResponse implements \IteratorAggregate
      * @var ResponseInterface
      */
     protected $response;
-
-    /**
-     * The class name of the stream chunk.
-     *
-     * @var string
-     */
-    protected $chunkClass;
 
     /**
      * @param ResponseInterface $response

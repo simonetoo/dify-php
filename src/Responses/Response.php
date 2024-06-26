@@ -4,13 +4,14 @@ declare(strict_types=1);
 namespace Simoneto\Dify\Responses;
 
 use GuzzleHttp\Psr7\MessageTrait;
+use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use Simoneto\Dify\DifyException;
 use Simoneto\Dify\Utils;
 
 class Response implements ResponseInterface
 {
-    use MessageTrait;
 
     /**
      * The PSR response.
@@ -159,5 +160,108 @@ class Response implements ResponseInterface
     public function getReasonPhrase(): string
     {
         return $this->response->getReasonPhrase();
+    }
+
+    /**
+     * @return string
+     */
+    public function getProtocolVersion(): string
+    {
+        return $this->response->getProtocolVersion();
+    }
+
+    /**
+     * @param string $version
+     * @return MessageInterface
+     */
+    public function withProtocolVersion(string $version): MessageInterface
+    {
+        $this->response = $this->response->withProtocolVersion($version);
+        return $this;
+    }
+
+    /**
+     * @return array|\string[][]
+     */
+    public function getHeaders(): array
+    {
+        return $this->response->getHeaders();
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasHeader(string $name): bool
+    {
+        return $this->response->hasHeader($name);
+    }
+
+    /**
+     * @param string $name
+     * @return array|string[]
+     */
+    public function getHeader(string $name): array
+    {
+        return $this->response->getHeader($name);
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    public function getHeaderLine(string $name): string
+    {
+        return $this->response->getHeaderLine($name);
+    }
+
+    /**
+     * @param string $name
+     * @param $value
+     * @return MessageInterface
+     */
+    public function withHeader(string $name, $value): MessageInterface
+    {
+        $this->response = $this->withHeader($name, $value);
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @param $value
+     * @return MessageInterface
+     */
+    public function withAddedHeader(string $name, $value): MessageInterface
+    {
+        $this->response = $this->withAddedHeader($name, $value);
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return MessageInterface
+     */
+    public function withoutHeader(string $name): MessageInterface
+    {
+        $this->response = $this->withoutHeader($name);
+        return $this;
+    }
+
+    /**
+     * @return StreamInterface
+     */
+    public function getBody(): StreamInterface
+    {
+        return $this->response->getBody();
+    }
+
+    /**
+     * @param StreamInterface $body
+     * @return MessageInterface
+     */
+    public function withBody(StreamInterface $body): MessageInterface
+    {
+        $this->response = $this->withBody($body);
+        return $this;
     }
 }
