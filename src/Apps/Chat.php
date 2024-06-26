@@ -40,14 +40,12 @@ class Chat extends App
      * Send a request to the chat application.
      *
      * @param string $userId
-     * @param string $query
      * @param array $parameters
      * @return Response
      */
-    public function send(string $userId, string $query, array $parameters = []): Response
+    public function send(string $userId, array $parameters = []): Response
     {
         return $this->client->postJson('/chat-messages', array_merge($parameters, [
-            'query' => $query,
             'user' => $userId,
             'response_mode' => 'blocking',
         ]));
@@ -57,14 +55,12 @@ class Chat extends App
      * Send a request to the chat application with enable streaming mode.
      *
      * @param string $userId
-     * @param string $query
      * @param array $parameters
      * @return StreamResponse
      */
-    public function stream(string $userId, string $query, array $parameters): StreamResponse
+    public function stream(string $userId, array $parameters): StreamResponse
     {
         $response = $this->client->postJson('/chat-messages', array_merge($parameters, [
-            'query' => $query,
             'user' => $userId,
             'response_mode' => 'streaming',
         ]))->throwIfHttpFailed();
