@@ -1,12 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Simoneto\Dify\Responses;
+namespace Simonetoo\Dify\Responses;
 
 use Generator;
 use IteratorAggregate;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Simonetoo\Dify\DifyException;
 
 class StreamResponse implements IteratorAggregate
 {
@@ -37,7 +38,12 @@ class StreamResponse implements IteratorAggregate
                 continue;
             }
 
-            yield $line;
+            $response = json_decode(trim(substr($line, strlen('data:'))), true);
+            if (empty($response['event'])) {
+                throw new DifyException('Stream data parse error:' . $line);
+            }
+
+            yield new StreamChunked($response);
         }
     }
 

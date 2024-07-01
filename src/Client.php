@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Simoneto\Dify;
+namespace Simonetoo\Dify;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
-use Simoneto\Dify\Responses\Response;
+use Simonetoo\Dify\Responses\Response;
 
 class Client
 {

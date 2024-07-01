@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Simoneto\Dify;
+namespace Simonetoo\Dify;
 
-use Simoneto\Dify\Apps\Chat;
-use Simoneto\Dify\Apps\Completion;
+use Simonetoo\Dify\Apps\Chat;
+use Simonetoo\Dify\Apps\Completion;
 
 /**
  * @method static Factory setOption(string $key, $value)

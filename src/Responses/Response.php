@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Simoneto\Dify\Responses;
+namespace Simonetoo\Dify\Responses;
 
 use GuzzleHttp\Psr7\MessageTrait;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use Simoneto\Dify\DifyException;
-use Simoneto\Dify\Utils;
+use Simonetoo\Dify\DifyException;
+use Simonetoo\Dify\Utils;
 
 class Response implements ResponseInterface
 {

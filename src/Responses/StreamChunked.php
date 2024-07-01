@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Simoneto\Dify\Responses;
+namespace Simonetoo\Dify\Responses;
 
 class StreamChunked
 {

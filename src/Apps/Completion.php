@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Simoneto\Dify\Apps;
+namespace Simonetoo\Dify\Apps;
 
-use Simoneto\Dify\Responses\Response;
-use Simoneto\Dify\Responses\StreamResponse;
+use Simonetoo\Dify\Responses\Response;
+use Simonetoo\Dify\Responses\StreamResponse;
 
 class Completion extends App
 {

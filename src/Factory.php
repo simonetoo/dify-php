@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Simoneto\Dify;
+namespace Simonetoo\Dify;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
-use Simoneto\Dify\Apps\Chat;
-use Simoneto\Dify\Apps\Completion;
+use Simonetoo\Dify\Apps\Chat;
+use Simonetoo\Dify\Apps\Completion;
 
 class Factory
 {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Simoneto\Dify;
+namespace Simonetoo\Dify;
 
 use Throwable;
 

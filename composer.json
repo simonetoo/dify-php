@@ -9,7 +9,7 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "Simoneto\\Dify\\": "src/"
+      "Simonetoo\\Dify\\": "src/"
     }
   },
   "autoload-dev": {
