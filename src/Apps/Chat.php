@@ -169,18 +169,25 @@ class Chat extends App
      *
      * @param string $userId
      * @param string $filePath
+     * @param string $filename
      * @return Response
      */
-    public function audioToText(string $userId, string $filePath): Response
+    public function audioToText(string $userId, string $filePath, string $filename): Response
     {
         return $this->client->request('POST', 'audio-to-text', [
-            [
-                'name' => 'file',
-                'contents' => fopen($filePath, 'r+')
-            ], [
-                'name' => 'user',
-                'contents' => $userId
+
+            'multipart' => [
+                [
+                    'name' => 'file',
+                    'contents' => fopen($filePath, 'r'),
+                    'filename' => $filename
+                ],
+                [
+                    'name' => 'user',
+                    'contents' => $userId
+                ]
             ]
+
         ]);
     }
 }

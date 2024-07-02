@@ -59,10 +59,10 @@ abstract class App
      *
      * @param string $userId
      * @param string $path
-     * @param string|null $filename
+     * @param string $filename
      * @return Response
      */
-    public function fileUpload(string $userId, string $path, string $filename = null): Response
+    public function fileUpload(string $userId, string $path, string $filename): Response
     {
 
         $multipart = [
@@ -73,7 +73,7 @@ abstract class App
             [
                 'name' => 'file',
                 'contents' => fopen($path, 'r+'),
-                'filename' => empty($filename) ? pathinfo($path, PATHINFO_FILENAME) : $filename
+                'filename' => $filename
             ]
         ];
         return $this->client->request('POST', 'files/upload', [
