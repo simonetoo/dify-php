@@ -33,7 +33,7 @@ class Completion extends App
      * @param array $parameters
      * @return StreamResponse
      */
-    public function stream(string $userId, array $parameters): StreamResponse
+    public function stream(string $userId, array $parameters = []): StreamResponse
     {
         $response = $this->client->postJson('completion-messages', array_merge($parameters, [
             'user' => $userId,

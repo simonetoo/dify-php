@@ -62,7 +62,7 @@ class Chat extends App
      * @param array $parameters
      * @return StreamResponse
      */
-    public function stream(string $userId, string $query, array $parameters): StreamResponse
+    public function stream(string $userId, string $query, array $parameters = []): StreamResponse
     {
         $response = $this->client->postJson('chat-messages', array_merge($parameters, [
             'user' => $userId,

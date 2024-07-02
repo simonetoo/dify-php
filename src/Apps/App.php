@@ -58,37 +58,25 @@ abstract class App
      * Uploaded files are for use by the current end-user only.
      *
      * @param string $userId
-     * @param string|array<int,array<string,string>> $files
+     * @param string $path
      * @param string|null $filename
      * @return Response
      */
-    public function fileUpload(string $userId, $files, string $filename = null): Response
+    public function fileUpload(string $userId, string $path, string $filename = null): Response
     {
-        if (is_string($files)) {
-            return $this->fileUpload($userId, [
-                [
-                    'name' => $filename,
-                    'path' => $files
-                ]
-            ]);
-        }
+
         $multipart = [
             [
                 'name' => 'user',
                 'contents' => $userId
+            ],
+            [
+                'name' => 'file',
+                'contents' => fopen($path, 'r+'),
+                'filename' => empty($filename) ? pathinfo($path, PATHINFO_FILENAME) : $filename
             ]
         ];
-        foreach ($files as $file) {
-            $multipart[] = [
-                'name' => 'file',
-                'contents' => fopen($file['path'], 'r+'),
-                'filename' => empty($file['name']) ? pathinfo($file['path'], PATHINFO_FILENAME) : $file['name']
-            ];
-        }
         return $this->client->request('POST', 'files/upload', [
-            'headers' => [
-                'Content-Type' => 'multipart/form-data',
-            ],
             'multipart' => $multipart
         ]);
     }
