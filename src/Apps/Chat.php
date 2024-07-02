@@ -82,7 +82,7 @@ class Chat extends App
      */
     public function suggested(string $userId, string $messageId): Response
     {
-        return $this->client->postJson("messages/{$messageId}/suggested", [
+        return $this->client->get("messages/{$messageId}/suggested", [
             'user' => $userId
         ]);
     }
@@ -97,7 +97,7 @@ class Chat extends App
      */
     public function messages(string $userId, string $conversationId, array $parameters = []): Response
     {
-        return $this->client->postJson('messages', array_merge($parameters, [
+        return $this->client->get('messages', array_merge($parameters, [
             'conversation_id' => $conversationId,
             'user' => $userId,
         ]));
@@ -112,7 +112,7 @@ class Chat extends App
      */
     public function conversations(string $userId, array $parameters = []): Response
     {
-        return $this->client->postJson('conversations', array_merge($parameters, [
+        return $this->client->get('conversations', array_merge($parameters, [
             'user' => $userId,
         ]));
     }
@@ -158,7 +158,7 @@ class Chat extends App
     public function conversationDelete(string $userId, string $conversationId): Response
     {
         return $this->client->request('DELETE', "conversations/{$conversationId}", [
-            'query' => [
+            'json' => [
                 'user' => $userId
             ]
         ]);
@@ -175,7 +175,6 @@ class Chat extends App
     public function audioToText(string $userId, string $filePath, string $filename): Response
     {
         return $this->client->request('POST', 'audio-to-text', [
-
             'multipart' => [
                 [
                     'name' => 'file',
