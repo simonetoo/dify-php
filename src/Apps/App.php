@@ -64,7 +64,6 @@ abstract class App
      */
     public function fileUpload(string $userId, string $path, string $filename): Response
     {
-
         $multipart = [
             [
                 'name' => 'user',

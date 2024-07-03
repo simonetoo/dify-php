@@ -18,9 +18,10 @@ class Completion extends App
      */
     public function send(string $userId, array $parameters = []): Response
     {
-        return $this->client->postJson('completion-messages', array_merge($parameters, [
-            'user' => $userId,
+        return $this->client->postJson('completion-messages', array_merge([
             'inputs' => [],
+        ], $parameters, [
+            'user' => $userId,
             'response_mode' => 'blocking',
         ]));
     }
@@ -35,9 +36,10 @@ class Completion extends App
      */
     public function stream(string $userId, array $parameters = []): StreamResponse
     {
-        $response = $this->client->postJson('completion-messages', array_merge($parameters, [
-            'user' => $userId,
+        $response = $this->client->postJson('completion-messages', array_merge([
             'inputs' => [],
+        ], $parameters, [
+            'user' => $userId,
             'response_mode' => 'streaming',
         ]), ['stream' => true])->throwIfHttpFailed();
         return new StreamResponse($response);

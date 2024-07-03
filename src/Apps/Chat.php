@@ -46,10 +46,11 @@ class Chat extends App
      */
     public function send(string $userId, string $query, array $parameters = []): Response
     {
-        return $this->client->postJson('chat-messages', array_merge($parameters, [
+        return $this->client->postJson('chat-messages', array_merge([
+            'inputs' => [],
+        ], $parameters, [
             'user' => $userId,
             'query' => $query,
-            'inputs' => [],
             'response_mode' => 'blocking',
         ]));
     }
@@ -64,10 +65,11 @@ class Chat extends App
      */
     public function stream(string $userId, string $query, array $parameters = []): StreamResponse
     {
-        $response = $this->client->postJson('chat-messages', array_merge($parameters, [
+        $response = $this->client->postJson('chat-messages', array_merge([
+            'inputs' => [],
+        ], $parameters, [
             'user' => $userId,
             'query' => $query,
-            'inputs' => [],
             'response_mode' => 'streaming',
         ]), ['stream' => true])->throwIfHttpFailed();
         return new StreamResponse($response);
