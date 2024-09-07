@@ -5,6 +5,7 @@ namespace Simonetoo\Dify;
 
 use Simonetoo\Dify\Apps\Chat;
 use Simonetoo\Dify\Apps\Completion;
+use Simonetoo\Dify\Apps\Dataset;
 
 /**
  * @method static Factory setOption(string $key, $value)
@@ -17,6 +18,7 @@ use Simonetoo\Dify\Apps\Completion;
  * @method static Client createWithApiKey(string $apiKey)
  * @method static Chat chat(string $apiKey)
  * @method static Completion completion(string $apiKey)
+ * @method static Dataset dataset(string $apiKey)
  */
 class Dify
 {

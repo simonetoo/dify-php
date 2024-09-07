@@ -7,6 +7,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
 use Simonetoo\Dify\Apps\Chat;
 use Simonetoo\Dify\Apps\Completion;
+use Simonetoo\Dify\Apps\Dataset;
 
 class Factory
 {
@@ -187,5 +188,15 @@ class Factory
     public function completion(string $apiKey): Completion
     {
         return new Completion($this->createWithApiKey($apiKey));
+    }
+    /**
+     * Create a dataset app.
+     *
+     * @param string $apiKey
+     * @return Dataset
+     */
+    public function dataset(string $apiKey): Dataset
+    {
+        return new Dataset($this->createWithApiKey($apiKey));
     }
 }
